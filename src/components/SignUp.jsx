@@ -1,3 +1,7 @@
-export default function SignUp() {
-  return currentPage === "signUp" ? <></> : null;
+export default function SignUp({ currentPage }) {
+  return currentPage === "signUp" ? (
+    <>
+      <h1>signup</h1>
+    </>
+  ) : null;
 }

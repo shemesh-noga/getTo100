@@ -10,14 +10,13 @@ import { User, allUsers } from "./data/Users";
 function App() {
   const [currentPage, setCurrentPage] = useState("signIn");
   const [currentPlayers, setCurrentPlayers] = useState([]);
-  console.log(currentPage);
   return (
     <>
       <NavBar setCurrentPage={setCurrentPage} />
       <SignIn currentPage={currentPage} />
-      {currentPage === "signUp" && <SignUp />}
-      {currentPage === "gamePage" && <GamePage />}
-      {currentPage === "leaderBoard" && <LeaderBoard />}
+      <SignUp currentPage={currentPage} />
+      <GamePage currentPage={currentPage} />
+      <LeaderBoard currentPage={currentPage} />
     </>
   );
 }
