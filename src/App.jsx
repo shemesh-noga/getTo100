@@ -5,6 +5,7 @@ import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import GamePage from "./components/Gamepage";
 import LeaderBoard from "./components/LeaderBoard";
+import { User, allUsers } from "./data/Users";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("signIn");
