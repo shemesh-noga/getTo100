@@ -6,9 +6,6 @@ function SignIn({ currentPage, setCurrentPage }) {
 
   function checkUsername(username) {
     const userNameStatus = allUsers.some((user) => user.name === username);
-
-    console.log(typeof "Noga");
-
     if (userNameStatus) {
       alert("signed in succefully");
       setCurrentPage("gamePage");

@@ -1,6 +1,6 @@
 export const allUsers = [
   {
-    name: "Yarkira",
+    name: "Yakira",
     scores: [5, 7, 8],
   },
   {
