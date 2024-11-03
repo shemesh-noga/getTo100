@@ -6,7 +6,8 @@ function SignIn({ currentPage, setCurrentPage }) {
   const [message, setMessage] = useState("");
 
   function checkUsernameSignIn(username) {
-    const userNameStatus = allUsers.some((user) => user.name === username);
+    const existingUsers = JSON.parse(window.localStorage.getItem("usersArr"));
+    const userNameStatus = existingUsers.some((user) => user.name === username);
     if (userNameStatus) {
       setCurrentPage("gamePage");
     } else {
@@ -21,7 +22,7 @@ function SignIn({ currentPage, setCurrentPage }) {
 
   return currentPage === "signIn" ? (
     <>
-      <h2>Sign Ip</h2>
+      <h2>Sign In</h2>
 
       <form action="GET" onSubmit={handleSubmit}>
         <label htmlFor="usernameInput">

@@ -10,6 +10,14 @@ import { User, allUsers } from "./data/Users";
 function App() {
   const [currentPage, setCurrentPage] = useState("signIn");
   const [currentPlayers, setCurrentPlayers] = useState([]);
+
+  // initiallize local storage:
+  let usersLocalStorage = window.localStorage.getItem("usersArr");
+  if (usersLocalStorage === null) {
+    window.localStorage.clear();
+    window.localStorage.setItem("usersArr", JSON.stringify(usersArr));
+  }
+
   return (
     <>
       <NavBar setCurrentPage={setCurrentPage} />
