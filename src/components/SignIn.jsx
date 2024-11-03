@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { User, allUsers } from "../data/Users";
 
-function SignIn({ currentPage, setCurrentPage }) {
+function SignIn({
+  currentPage,
+  setCurrentPage,
+  currentPlayers,
+  setCurrentPlayers,
+}) {
   const [username, setUsername] = useState("");
   const [message, setMessage] = useState("");
 
@@ -9,6 +14,7 @@ function SignIn({ currentPage, setCurrentPage }) {
     const existingUsers = JSON.parse(window.localStorage.getItem("usersArr"));
     const userNameStatus = existingUsers.some((user) => user.name === username);
     if (userNameStatus) {
+      setCurrentPlayers((prev) => [...prev, username]);
       setCurrentPage("gamePage");
     } else {
       setMessage("username not found");
