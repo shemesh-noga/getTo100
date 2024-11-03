@@ -3,20 +3,20 @@ import { User, allUsers } from "../data/Users";
 
 function SignIn({ currentPage, setCurrentPage }) {
   const [username, setUsername] = useState("");
+  const [message, setMessage] = useState("");
 
-  function checkUsername(username) {
+  function checkUsernameSignIn(username) {
     const userNameStatus = allUsers.some((user) => user.name === username);
     if (userNameStatus) {
-      alert("signed in succefully");
       setCurrentPage("gamePage");
     } else {
-      alert("username not found");
+      setMessage("username not found");
     }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    checkUsername(username);
+    checkUsernameSignIn(username);
   };
 
   return currentPage === "signIn" ? (
@@ -36,6 +36,8 @@ function SignIn({ currentPage, setCurrentPage }) {
 
         <button type="submit">Sign In</button>
       </form>
+
+      <p>{message}</p>
     </>
   ) : null;
 }
