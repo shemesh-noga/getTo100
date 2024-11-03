@@ -10,12 +10,29 @@ import { User, allUsers } from "./data/Users";
 function App() {
   const [currentPage, setCurrentPage] = useState("signIn");
   const [currentPlayers, setCurrentPlayers] = useState([]);
+
+  // initiallize local storage:
+  let usersLocalStorage = window.localStorage.getItem("usersArr");
+  if (usersLocalStorage === null) {
+    window.localStorage.clear();
+    window.localStorage.setItem("usersArr", JSON.stringify(usersArr));
+  }
+
   return (
     <>
       <NavBar setCurrentPage={setCurrentPage} />
-      <SignIn currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <SignIn
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        currentPlayers={currentPlayers}
+        setCurrentPlayers={setCurrentPlayers}
+      />
       <SignUp currentPage={currentPage} setCurrentPage={setCurrentPage} />
-      <GamePage currentPage={currentPage} />
+      <GamePage
+        currentPage={currentPage}
+        currentPlayers={currentPlayers}
+        setCurrentPlayers={setCurrentPlayers}
+      />
       <LeaderBoard currentPage={currentPage} />
     </>
   );
