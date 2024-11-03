@@ -14,10 +14,10 @@ function App() {
   return (
     <>
       <NavBar setCurrentPage={setCurrentPage} />
-      <SignIn currentPage={currentPage} />
-      {currentPage === "signUp" && <SignUp />}
-      {currentPage === "gamePage" && <GamePage />}
-      {currentPage === "leaderBoard" && <LeaderBoard />}
+      <SignIn currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <SignUp currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <GamePage currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <LeaderBoard currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </>
   );
 }
