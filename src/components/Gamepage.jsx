@@ -5,11 +5,7 @@ export default function GamePage({
 }) {
   return currentPage === "gamePage" ? (
     <>
-      {currentPlayers.map((user) => (
-        <h1>
-          {user.name}, {user.scores}, {user.num}, {user.moves}
-        </h1>
-      ))}
+      <p>{currentPlayers[0].scores}</p>
     </>
   ) : null;
 }

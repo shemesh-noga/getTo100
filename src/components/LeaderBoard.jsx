@@ -6,7 +6,6 @@ export default function LeaderBoard({ currentPage }) {
     average: user.average,
   }));
   usersAverage.sort((a, b) => a.average - b.average);
-  console.log("usersAverage: ", usersAverage[0]);
 
   return currentPage === "leaderBoard" ? (
     <>

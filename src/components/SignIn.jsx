@@ -1,20 +1,27 @@
 import { useState } from "react";
 import { User, allUsers } from "../data/Users";
 
-function SignIn({
-  currentPage,
-  setCurrentPage,
-  currentPlayers,
-  setCurrentPlayers,
-}) {
+function SignIn({ currentPage, setCurrentPage, setCurrentPlayers }) {
   const [username, setUsername] = useState("");
   const [message, setMessage] = useState("");
 
   function checkUsernameSignIn(username) {
     const existingUsers = JSON.parse(window.localStorage.getItem("usersArr"));
     const userNameStatus = existingUsers.some((user) => user.name === username);
+
     if (userNameStatus) {
-      setCurrentPlayers((prev) => [...prev, username]);
+      const thisUser = existingUsers.find((user) => user.name === username);
+      const userScores = thisUser.scores;
+
+      setCurrentPlayers((prev) => [
+        ...prev,
+        {
+          name: username,
+          number: Math.floor(Math.random() * 100),
+          moves: 0,
+          scores: JSON.stringify(userScores),
+        },
+      ]);
       setCurrentPage("gamePage");
     } else {
       setMessage("username not found");
