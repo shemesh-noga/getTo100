@@ -21,9 +21,18 @@ function App() {
   return (
     <>
       <NavBar setCurrentPage={setCurrentPage} />
-      <SignIn currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <SignIn
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        currentPlayers={currentPlayers}
+        setCurrentPlayers={setCurrentPlayers}
+      />
       <SignUp currentPage={currentPage} setCurrentPage={setCurrentPage} />
-      <GamePage currentPage={currentPage} />
+      <GamePage
+        currentPage={currentPage}
+        currentPlayers={currentPlayers}
+        setCurrentPlayers={setCurrentPlayers}
+      />
       <LeaderBoard currentPage={currentPage} />
     </>
   );
