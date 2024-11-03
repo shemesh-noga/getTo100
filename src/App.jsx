@@ -9,7 +9,9 @@ import { User, allUsers } from "./data/Users";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("signIn");
-  const [currentPlayers, setCurrentPlayers] = useState([]);
+  const [currentPlayers, setCurrentPlayers] = useState([
+    { name: "Yakira", number: 50, score: [1, 2, 3], moves: 3 },
+  ]);
 
   // initiallize local storage:
   let usersLocalStorage = window.localStorage.getItem("usersArr");
