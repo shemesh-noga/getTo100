@@ -1,3 +1,7 @@
 export default function NavBar() {
-  return <></>;
+  return (
+    <>
+      <button onclick={han}>Sign In</button>
+    </>
+  );
 }
