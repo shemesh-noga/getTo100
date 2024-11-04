@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { User, allUsers } from "../data/Users";
+import { User } from "../data/Users";
 
-function SignUp({ currentPage, setCurrentPage }) {
+function SignUp({ currentPage }) {
   const [username, setUsername] = useState("");
   const [message, setMessage] = useState("");
 

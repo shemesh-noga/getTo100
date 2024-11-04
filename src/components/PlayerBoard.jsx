@@ -8,8 +8,6 @@ export default function PlayerBoard({
   handleQuit,
   handleNewGame,
   playersTurn,
-  currentPlayers,
-  setCurrentPlayers,
 }) {
   function handleDiabledButtons(id) {
     return playersTurn === id ? false : true;
@@ -57,8 +55,18 @@ export default function PlayerBoard({
 
       {number === 100 && (
         <>
-          <button onClick={() => handleQuit(name)}>Quit</button>
-          <button onClick={() => handleNewGame(name)}>New Game</button>
+          <button
+            disabled={handleDiabledButtons(id)}
+            onClick={() => handleQuit(name)}
+          >
+            Quit
+          </button>
+          <button
+            disabled={handleDiabledButtons(id)}
+            onClick={() => handleNewGame(name)}
+          >
+            New Game
+          </button>
         </>
       )}
     </div>

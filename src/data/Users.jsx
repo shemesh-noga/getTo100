@@ -3,13 +3,6 @@ export class User {
     this.name = name;
     this.scores = [];
   }
-
-  get average() {
-    const score = this.scores;
-    const averageScore =
-      score.reduce((acc, val) => acc + val, 0) / score.length;
-    return averageScore;
-  }
 }
 
 export const Yakira = new User("Yakira");

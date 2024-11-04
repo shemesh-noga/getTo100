@@ -1,4 +1,4 @@
-import { allUsers, User, Yakira } from "../data/Users";
+import { allUsers } from "../data/Users";
 
 export default function LeaderBoard({ currentPage, usersls = allUsers }) {
   function average(user) {
@@ -11,6 +11,9 @@ export default function LeaderBoard({ currentPage, usersls = allUsers }) {
     username: user.name,
     average: average(user),
   }));
+  console.log("usersAverage: ", usersAverage);
+
+  console.log("allUsers: ", allUsers);
   usersAverage.sort((a, b) => a.average - b.average);
 
   return currentPage === "leaderBoard" ? (
