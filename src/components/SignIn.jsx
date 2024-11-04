@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { User, allUsers } from "../data/Users";
 
-function SignIn({ currentPage, setCurrentPage, setCurrentPlayers }) {
+function SignIn({
+  currentPage,
+  setCurrentPage,
+  currentPlayers,
+  setCurrentPlayers,
+}) {
   const [username, setUsername] = useState("");
   const [message, setMessage] = useState("");
 
@@ -13,16 +18,20 @@ function SignIn({ currentPage, setCurrentPage, setCurrentPlayers }) {
       const thisUser = existingUsers.find((user) => user.name === username);
       const userScores = thisUser.scores;
 
-      setCurrentPlayers((prev) => [
-        ...prev,
-        {
-          name: username,
-          number: 99,
-          // number: Math.floor(Math.random() * 100),
-          moves: 0,
-          scores: userScores,
-        },
-      ]);
+      const currentPlayerStatus = currentPlayers.some(
+        (user) => user.name === username
+      );
+      currentPlayerStatus
+        ? alert("this user is already playing")
+        : setCurrentPlayers((prev) => [
+            ...prev,
+            {
+              name: username,
+              number: Math.floor(Math.random() * 100),
+              moves: 0,
+              scores: userScores,
+            },
+          ]);
       setCurrentPage("gamePage");
     } else {
       setMessage("username not found");

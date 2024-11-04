@@ -1,48 +1,75 @@
-import { useState } from "react";
+export default function PlayerBoard({
+  id,
+  name,
+  number,
+  moves,
+  score,
+  handleNumberChange,
+  handleQuit,
+  handleNewGame,
+  playersTurn,
+  currentPlayers,
+  setCurrentPlayers,
+}) {
+  function handleDiabledButtons(id) {
+    return playersTurn === id ? false : true;
+  }
 
-export default function PlayerBoard(props) {
-  function addScore(moves, name) {
-    const existingUsers = JSON.parse(window.localStorage.getItem("usersArr"));
-    const thisUser = existingUsers.find((user) => user.name == name);
-    const thisUserIndex = existingUsers.indexOf(thisUser);
-
-    existingUsers[thisUserIndex].scores.push(moves);
-    console.log(existingUsers[thisUserIndex]);
-    let newUsers = JSON.parse(JSON.stringify(existingUsers));
-    window.localStorage.setItem("usersArr", JSON.stringify(newUsers));
-
-    // const updatedPlayers = JSON.parse(JSON.stringify(props.currentPlayers));
-    // const thisUpdatedUser = updatedPlayers.find((user) => user.name == name);
-    // const thisUpdatedUserIndex = updatedPlayers.indexOf(thisUpdatedUser);
-    // updatedPlayers[thisUpdatedUserIndex].scores.push(moves);
-    // props.setCurrentPlayers(updatedPlayers);
+  function addScoreToLS(thisName, thisMoves) {
+    console.log("hiiii");
+    const existingPlayers = JSON.parse(window.localStorage.getItem("usersArr"));
+    const thisUser = existingPlayers.find((user) => user.name === thisName);
+    const thisUserIndex = existingPlayers.indexOf(thisUser);
+    existingPlayers[thisUserIndex].scores.push(thisMoves);
+    console.log("moves: " + thisMoves);
+    window.localStorage.setItem("usersArr", JSON.stringify(existingPlayers));
+    return true;
   }
 
   return (
-    <div className="playerDiv" id={"div-" + props.name}>
-      <h2>Player: {props.name}</h2>
-      <h5>Number: {props.number}</h5>
-      <button onClick={() => props.handleNumberChange(props.name, "+1")}>
+    <div className="playerDiv" id={id}>
+      <h2>Player: {name}</h2>
+      <h5>Number: {number}</h5>
+      <button
+        value={"+1"}
+        disabled={handleDiabledButtons(id)}
+        onClick={(e) => handleNumberChange(name, e)}
+      >
         +1
       </button>
-      <button onClick={() => props.handleNumberChange(props.name, "-1")}>
+      <button
+        value={"-1"}
+        disabled={handleDiabledButtons(id)}
+        onClick={(e) => handleNumberChange(name, e)}
+      >
         -1
       </button>
-      <button onClick={() => props.handleNumberChange(props.name, "*2")}>
+      <button
+        value={"*2"}
+        disabled={handleDiabledButtons(id)}
+        onClick={(e) => handleNumberChange(name, e)}
+      >
         *2
       </button>
-      <button onClick={() => props.handleNumberChange(props.name, "/2")}>
+      <button
+        value={"/2"}
+        disabled={handleDiabledButtons(id)}
+        onClick={(e) => handleNumberChange(name, e)}
+      >
         /2
       </button>
-      <h5>Moves: {props.moves}</h5>
-      <h6>Score History: {props.score}</h6>
+      <h5>Moves: {moves}</h5>
+      <h6>
+        Score History:{" "}
+        {JSON.stringify(score)
+          .replace(/^\[|\]$/g, "")
+          .replace(/,/g, ", ")}
+      </h6>
 
-      {props.number === 100 && (
+      {number === 100 && (
         <>
-          <button onClick={() => props.handleQuit(props.name)}>Quit</button>
-          <button onClick={() => props.handleNewGame(props.name)}>
-            New Game
-          </button>
+          <button onClick={() => handleQuit(name)}>Quit</button>
+          <button onClick={() => handleNewGame(name)}>New Game</button>
         </>
       )}
     </div>

@@ -11,9 +11,7 @@ function SignUp({ currentPage, setCurrentPage }) {
     if (userNameStatus) {
       setMessage("username taken. Please pick another one.");
     } else {
-      console.log(existingUsers);
       existingUsers.push(new User(username));
-      console.log(existingUsers);
       window.localStorage.setItem("usersArr", JSON.stringify(existingUsers));
       setMessage("signed up successfully!\nSign in to play the game:)");
     }
