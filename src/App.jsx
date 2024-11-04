@@ -11,6 +11,9 @@ function App() {
   const [currentPage, setCurrentPage] = useState("signIn");
   const [currentPlayers, setCurrentPlayers] = useState([]);
 
+  // window.localStorage.clear();
+  // window.localStorage.setItem("usersArr", JSON.stringify(allUsers));
+
   // initiallize local storage:
   let usersLocalStorage = window.localStorage.getItem("usersArr");
   if (usersLocalStorage === null) {

@@ -54,6 +54,8 @@ export default function GamePage({
           handleNumberChange={handleNumberChange}
           handleQuit={handleQuit}
           handleNewGame={handleNewGame}
+          setCurrentPlayers={setCurrentPlayers}
+          currentPlayers={currentPlayers}
         />
       ))}
     </>

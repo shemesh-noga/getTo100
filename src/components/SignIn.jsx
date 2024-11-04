@@ -17,9 +17,10 @@ function SignIn({ currentPage, setCurrentPage, setCurrentPlayers }) {
         ...prev,
         {
           name: username,
-          number: Math.floor(Math.random() * 100),
+          number: 99,
+          // number: Math.floor(Math.random() * 100),
           moves: 0,
-          scores: JSON.stringify(userScores),
+          scores: userScores,
         },
       ]);
       setCurrentPage("gamePage");
