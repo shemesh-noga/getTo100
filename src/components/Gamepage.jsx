@@ -44,7 +44,9 @@ export default function GamePage({
   function handleQuit(quitter) {
     const thisQuitter = currentPlayers.find((user) => user.name === quitter);
     const i = currentPlayers.indexOf(thisQuitter);
-    setCurrentPlayers((prev) => prev.splice(i, 1));
+    let updatedPlayers = JSON.parse(JSON.stringify(currentPlayers));
+    updatedPlayers.splice(i, 1);
+    setCurrentPlayers(updatedPlayers);
   }
 
   function handleNewGame(newPlayer) {
@@ -52,10 +54,10 @@ export default function GamePage({
       (user) => user.name === newPlayer
     );
     const i = currentPlayers.indexOf(thisNewPlayer);
-    setCurrentPlayers((prev) => prev.splice(i, 1));
-    thisNewPlayer.moves = 0;
-    thisNewPlayer.number = Math.floor(Math);
-    setCurrentPlayers((prev) => prev.push(thisNewPlayer));
+    let updatedPlayers = JSON.parse(JSON.stringify(currentPlayers));
+    updatedPlayers[i].moves = 0;
+    updatedPlayers[i].number = Math.floor(Math.random() * 100);
+    setCurrentPlayers(updatedPlayers);
   }
 
   return currentPage === "gamePage" ? (

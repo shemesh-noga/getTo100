@@ -15,17 +15,6 @@ export default function PlayerBoard({
     return playersTurn === id ? false : true;
   }
 
-  function addScoreToLS(thisName, thisMoves) {
-    console.log("hiiii");
-    const existingPlayers = JSON.parse(window.localStorage.getItem("usersArr"));
-    const thisUser = existingPlayers.find((user) => user.name === thisName);
-    const thisUserIndex = existingPlayers.indexOf(thisUser);
-    existingPlayers[thisUserIndex].scores.push(thisMoves);
-    console.log("moves: " + thisMoves);
-    window.localStorage.setItem("usersArr", JSON.stringify(existingPlayers));
-    return true;
-  }
-
   return (
     <div className="playerDiv" id={id}>
       <h2>Player: {name}</h2>
@@ -68,8 +57,18 @@ export default function PlayerBoard({
 
       {number === 100 && (
         <>
-          <button onClick={() => handleQuit(name)}>Quit</button>
-          <button onClick={() => handleNewGame(name)}>New Game</button>
+          <button
+            disabled={handleDiabledButtons(id)}
+            onClick={() => handleQuit(name)}
+          >
+            Quit
+          </button>
+          <button
+            disabled={handleDiabledButtons(id)}
+            onClick={() => handleNewGame(name)}
+          >
+            New Game
+          </button>
         </>
       )}
     </div>
