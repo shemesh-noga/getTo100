@@ -6,23 +6,38 @@ export default function GamePage({
   currentPlayers,
   setCurrentPlayers,
 }) {
-  function handleNumberChange(name, action) {
-    let updatedPlayers = JSON.parse(JSON.stringify(currentPlayers));
-    for (let i = 0; i < updatedPlayers.length; i++) {
-      if (updatedPlayers[i].name === name) {
-        if (action === "+1") {
-          updatedPlayers[i].number += 1;
-        } else if (action === "-1") {
-          updatedPlayers[i].number -= 1;
-        } else if (action === "*2") {
-          updatedPlayers[i].number *= 2;
-        } else if (action === "/2") {
-          updatedPlayers[i].number = Math.floor(updatedPlayers[i].number / 2);
-        }
-        updatedPlayers[i].moves++;
-        break;
-      }
+  const [playersTurn, setPlayersTurn] = useState(0);
+
+  function handleNumberChange(name, e) {
+    const updatedPlayers = JSON.parse(JSON.stringify(currentPlayers));
+    const thisPlayer = updatedPlayers.find((player) => player.name === name);
+    const thisPlayerIndex = updatedPlayers.indexOf(thisPlayer);
+    const action = e.target.value;
+    const prevNum = JSON.parse(
+      JSON.stringify(updatedPlayers[thisPlayerIndex].number)
+    );
+    updatedPlayers[thisPlayerIndex].number = Math.floor(
+      eval(`${prevNum}${action}`)
+    );
+    updatedPlayers[thisPlayerIndex].moves++;
+    playersTurn === currentPlayers.length - 1
+      ? setPlayersTurn(0)
+      : setPlayersTurn((prev) => (prev += 1));
+
+    if (updatedPlayers[thisPlayerIndex].number == 100) {
+      const existingPlayers = JSON.parse(
+        window.localStorage.getItem("usersArr")
+      );
+      const thisUser = existingPlayers.find((user) => user.name === name);
+      const thisUserIndex = existingPlayers.indexOf(thisUser);
+      existingPlayers[thisUserIndex].scores.push(
+        updatedPlayers[thisPlayerIndex].moves
+      );
+      window.localStorage.setItem("usersArr", JSON.stringify(existingPlayers));
+      updatedPlayers[thisPlayerIndex].scores =
+        existingPlayers[thisUserIndex].scores;
     }
+
     setCurrentPlayers(updatedPlayers);
   }
 
@@ -46,8 +61,10 @@ export default function GamePage({
   return currentPage === "gamePage" ? (
     <>
       <h1>Game</h1>
-      {currentPlayers.map((user) => (
+      {currentPlayers.map((user, i) => (
         <PlayerBoard
+          key={i}
+          id={i}
           name={user.name}
           number={user.number}
           moves={user.moves}
@@ -55,6 +72,10 @@ export default function GamePage({
           handleNumberChange={handleNumberChange}
           handleQuit={handleQuit}
           handleNewGame={handleNewGame}
+          playersTurn={playersTurn}
+          setPlayersTurn={setPlayersTurn}
+          currentPlayers={currentPlayers}
+          setCurrentPlayers={setCurrentPlayers}
         />
       ))}
     </>
