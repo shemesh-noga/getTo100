@@ -38,6 +38,8 @@ export default function GamePage({
     );
     const i = currentPlayers.indexOf(thisNewPlayer);
     setCurrentPlayers((prev) => prev.splice(i, 1));
+    thisNewPlayer.moves = 0;
+    thisNewPlayer.number = Math.floor(Math);
     setCurrentPlayers((prev) => prev.push(thisNewPlayer));
   }
 
