@@ -27,7 +27,8 @@ function SignIn({
             ...prev,
             {
               name: username,
-              number: Math.floor(Math.random() * 100),
+              // number: Math.floor(Math.random() * 100),
+              number: 99,
               moves: 0,
               scores: userScores,
             },

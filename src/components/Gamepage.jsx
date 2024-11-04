@@ -20,9 +20,6 @@ export default function GamePage({
       eval(`${prevNum}${action}`)
     );
     updatedPlayers[thisPlayerIndex].moves++;
-    playersTurn === currentPlayers.length - 1
-      ? setPlayersTurn(0)
-      : setPlayersTurn((prev) => (prev += 1));
 
     if (updatedPlayers[thisPlayerIndex].number == 100) {
       const existingPlayers = JSON.parse(
@@ -38,13 +35,19 @@ export default function GamePage({
         existingPlayers[thisUserIndex].scores;
     }
 
+    playersTurn === currentPlayers.length - 1
+      ? setPlayersTurn(0)
+      : setPlayersTurn((prev) => (prev += 1));
+
     setCurrentPlayers(updatedPlayers);
   }
 
   function handleQuit(quitter) {
     const thisQuitter = currentPlayers.find((user) => user.name === quitter);
     const i = currentPlayers.indexOf(thisQuitter);
-    setCurrentPlayers((prev) => prev.splice(i, 1));
+    const updatedPlayers = JSON.parse(JSON.stringify(currentPlayers));
+    updatedPlayers.splice(i, 1);
+    setCurrentPlayers(updatedPlayers);
   }
 
   function handleNewGame(newPlayer) {
@@ -52,10 +55,10 @@ export default function GamePage({
       (user) => user.name === newPlayer
     );
     const i = currentPlayers.indexOf(thisNewPlayer);
-    setCurrentPlayers((prev) => prev.splice(i, 1));
-    thisNewPlayer.moves = 0;
-    thisNewPlayer.number = Math.floor(Math);
-    setCurrentPlayers((prev) => prev.push(thisNewPlayer));
+    const updatedPlayers = JSON.parse(JSON.stringify(currentPlayers));
+    updatedPlayers[i].moves = 0;
+    updatedPlayers[i].number = Math.floor(Math.random() * 99);
+    setCurrentPlayers(updatedPlayers);
   }
 
   return currentPage === "gamePage" ? (
