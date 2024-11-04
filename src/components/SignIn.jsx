@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { User, allUsers } from "../data/Users";
 
 function SignIn({
   currentPage,
@@ -17,7 +16,6 @@ function SignIn({
     if (userNameStatus) {
       const thisUser = existingUsers.find((user) => user.name === username);
       const userScores = thisUser.scores;
-
       const currentPlayerStatus = currentPlayers.some(
         (user) => user.name === username
       );
@@ -27,8 +25,7 @@ function SignIn({
             ...prev,
             {
               name: username,
-              // number: Math.floor(Math.random() * 100),
-              number: 99,
+              number: Math.floor(Math.random() * 100),
               moves: 0,
               scores: userScores,
             },

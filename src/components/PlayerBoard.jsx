@@ -8,8 +8,6 @@ export default function PlayerBoard({
   handleQuit,
   handleNewGame,
   playersTurn,
-  currentPlayers,
-  setCurrentPlayers,
 }) {
   function handleDiabledButtons(id) {
     return playersTurn === id ? false : true;

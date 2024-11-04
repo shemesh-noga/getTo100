@@ -1,10 +1,14 @@
-import { allUsers, User, Yakira } from "../data/Users";
+import { allUsers } from "../data/Users";
 
 export default function LeaderBoard({ currentPage }) {
+  const existingUsers = JSON.parse(window.localStorage.getItem("usersArr"));
   const usersAverage = allUsers.map((user) => ({
     username: user.name,
     average: user.average,
   }));
+  console.log("usersAverage: ", usersAverage);
+
+  console.log("allUsers: ", allUsers);
   usersAverage.sort((a, b) => a.average - b.average);
 
   return currentPage === "leaderBoard" ? (

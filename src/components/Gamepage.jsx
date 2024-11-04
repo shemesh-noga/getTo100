@@ -76,8 +76,6 @@ export default function GamePage({
           handleNewGame={handleNewGame}
           playersTurn={playersTurn}
           setPlayersTurn={setPlayersTurn}
-          currentPlayers={currentPlayers}
-          setCurrentPlayers={setCurrentPlayers}
         />
       ))}
     </>

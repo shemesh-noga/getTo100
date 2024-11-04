@@ -30,11 +30,7 @@ function App() {
         currentPlayers={currentPlayers}
         setCurrentPlayers={setCurrentPlayers}
       />
-      <SignUp
-        currentPage={currentPage}
-        currentPlayers={currentPlayers}
-        setCurrentPage={setCurrentPage}
-      />
+      <SignUp currentPage={currentPage} currentPlayers={currentPlayers} />
       <GamePage
         currentPage={currentPage}
         currentPlayers={currentPlayers}
