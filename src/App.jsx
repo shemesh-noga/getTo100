@@ -10,6 +10,7 @@ import { User, allUsers } from "./data/Users";
 function App() {
   const [currentPage, setCurrentPage] = useState("signIn");
   const [currentPlayers, setCurrentPlayers] = useState([]);
+  const [usersls, setUsersLS] = useState(JSON.stringify(allUsers));
 
   // window.localStorage.clear();
   // window.localStorage.setItem("usersArr", JSON.stringify(allUsers));
@@ -23,7 +24,11 @@ function App() {
 
   return (
     <>
-      <NavBar setCurrentPage={setCurrentPage} />
+      <NavBar
+        setCurrentPage={setCurrentPage}
+        usersls={usersls}
+        setUsersLS={setUsersLS}
+      />
       <SignIn
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}

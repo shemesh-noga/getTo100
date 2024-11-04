@@ -45,7 +45,7 @@ function SignIn({
   };
 
   return currentPage === "signIn" ? (
-    <>
+    <div id="signin">
       <h2>Sign In</h2>
 
       <form action="GET" onSubmit={handleSubmit}>
@@ -63,7 +63,7 @@ function SignIn({
       </form>
 
       <p>{message}</p>
-    </>
+    </div>
   ) : null;
 }
 

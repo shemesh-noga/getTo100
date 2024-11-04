@@ -1,9 +1,15 @@
 import { allUsers, User, Yakira } from "../data/Users";
 
-export default function LeaderBoard({ currentPage }) {
-  const usersAverage = allUsers.map((user) => ({
+export default function LeaderBoard({ currentPage, usersls = allUsers }) {
+  function average(user) {
+    const thisScores = user.scores;
+    const averageScore =
+      thisScores.reduce((acc, val) => acc + val, 0) / thisScores.length;
+    return Math.round(averageScore);
+  }
+  const usersAverage = usersls.map((user) => ({
     username: user.name,
-    average: user.average,
+    average: average(user),
   }));
   usersAverage.sort((a, b) => a.average - b.average);
 
