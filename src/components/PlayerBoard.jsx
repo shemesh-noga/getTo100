@@ -1,10 +1,6 @@
 export default function PlayerBoard(props) {
   return (
-    <div
-      className="playerDiv"
-      key={"div-" + props.name}
-      id={"div-" + props.name}
-    >
+    <div className="playerDiv" id={"div-" + props.name}>
       <h2>Player: {props.name}</h2>
       <h5>Number: {props.number}</h5>
       <button onClick={() => props.handleNumberChange(props.name, "+1")}>
@@ -21,6 +17,7 @@ export default function PlayerBoard(props) {
       </button>
       <h5>Moves: {props.moves}</h5>
       <h6>Score History: {props.score}</h6>
+
       {props.number === 100 && (
         <>
           <button onClick={() => props.handleQuit(props.name)}>Quit</button>

@@ -9,25 +9,25 @@ export default function LeaderBoard({ currentPage }) {
 
   return currentPage === "leaderBoard" ? (
     <>
-      <h1>First Place: </h1>
+      <h2>First Place: </h2>
       {usersAverage[0] !== undefined && (
-        <h2>
+        <h3>
           {usersAverage[0].username} with {usersAverage[0].average} points!!
-        </h2>
+        </h3>
       )}
 
-      <h1>Second Place: </h1>
+      <h2>Second Place: </h2>
       {usersAverage[1] !== undefined && (
-        <h2>
+        <h3>
           {usersAverage[1].username} with {usersAverage[1].average} points!!
-        </h2>
+        </h3>
       )}
 
-      <h1>Third Place: </h1>
+      <h2>Third Place: </h2>
       {usersAverage[2] !== undefined && (
-        <h2>
+        <h3>
           {usersAverage[2].username} with {usersAverage[2].average} points!!
-        </h2>
+        </h3>
       )}
     </>
   ) : null;

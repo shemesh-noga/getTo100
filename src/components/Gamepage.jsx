@@ -44,8 +44,9 @@ export default function GamePage({
   return currentPage === "gamePage" ? (
     <>
       <h1>Game</h1>
-      {currentPlayers.map((user) => (
+      {currentPlayers.map((user, i) => (
         <PlayerBoard
+          key={i}
           name={user.name}
           number={user.number}
           moves={user.moves}
